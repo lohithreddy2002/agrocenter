@@ -38,14 +38,13 @@ def Login(request):
 
 def signup(request):
     if request.method == 'POST':
-    
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            # form.save()
-            # username = form.cleaned_data.get('username')
-            # mail = form.cleaned_data.get('email')
-            inactive_user = send_verification_email(request, form)
-            messages.success(request, 'a verification mail has been sent to your email')
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            # inactive_user = send_verification_email(request, form)
+            # messages.success(request, 'a verification mail has been sent to your email')
             print('hai')    
             return redirect('login')
     else:
